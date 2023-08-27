@@ -1,5 +1,6 @@
 package com.framework.desafio.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.framework.desafio.entity.Album;
 import com.framework.desafio.entity.Comment;
@@ -56,7 +59,7 @@ public class BlogController {
 	
 	@PostMapping("/photo")
 	 public String singleFileUpload(@RequestBody Album album,
-								    HttpServletRequest request) {
+								    HttpServletRequest request) throws IOException {
 		String token = request.getHeader("Authorization");
 		String user = servicoJwt.getSujeitoDoToken(token);
 		return blogService.adicionaPhoto(album, user);

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.framework.desafio.entity.Album;
 import com.framework.desafio.entity.Comment;
@@ -42,16 +43,31 @@ public class BlogService {
 	}
 
     public Album adicionaAlbum(Album album, String user) throws IOException {
-		File diretorio = new File("C:/BlogFrame./album/");
+		File diretorio = new File("C:/BlogFrame./album/" + album.getNome());
         diretorio.mkdirs();
-		diretorio.createNewFile();
 		Usuario usuario = new Usuario();
 		usuario.setEmail(user);
 		album.setUsuario(usuario.getEmail());
 		return repositoryAlbum.save(album);
 	}
 
-	public String adicionaPhoto(Album album, String user) {
+	// public String adicionaPhoto(Album album, String user) {
+	// 	Optional<Album> optAlbum = albumDAO.findByNome(album.getNome());
+	// 	if(optAlbum == null) {
+	// 		return "Álbum não encontrado!"; 
+	// 	}
+	// 	else {
+	// 		Album dadosAlbum = optAlbum.get();
+	// 		if (user.equals(dadosAlbum.getUsuario())) {
+	// 			dadosAlbum.setFoto(album.getFoto());
+	// 			repositoryAlbum.save(dadosAlbum);
+	// 			return "Álbum criado com sucesso!";
+	// 		}
+	// 	}
+	// 	return "Usuário não tem permissão para esse álbum!"; 
+	// }
+
+	public String adicionaPhoto(Album album, String user) throws IOException {
 		Optional<Album> optAlbum = albumDAO.findByNome(album.getNome());
 		if(optAlbum == null) {
 			return "Álbum não encontrado!"; 
@@ -64,7 +80,7 @@ public class BlogService {
 				return "Álbum criado com sucesso!";
 			}
 		}
-		return "Usuário não tem permissão para esse álbum!"; 
+		return "Usuário não tem permissão para esse álbum!";
 	}
 
 }
