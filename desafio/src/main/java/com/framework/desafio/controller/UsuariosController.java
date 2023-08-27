@@ -26,24 +26,4 @@ public class UsuariosController {
 		return new ResponseEntity<Usuario>(this.usuariosService.adicionaUsuario(usuario), HttpStatus.OK);
 	}
 
-	// @GetMapping("/auth/usuarios/{email}")
-	// public ResponseEntity<Usuario> adicionaUsuario(@PathVariable String email) {
-	// 	try {
-	// 		return new ResponseEntity<Usuario>(usuariosService.getUsuario(email), HttpStatus.OK);
-	// 	} catch (IllegalArgumentException iae) {
-	// 		return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
-	// 	}
-	// }
-
-	// @DeleteMapping("/auth/usuarios/{email}")
-	// public ResponseEntity<Usuario> removeUsuario(@PathVariable String email,
-	// 		@RequestHeader("Authorization") String header) {
-	// 	try {
-	// 		return new ResponseEntity<Usuario>(usuariosService.removeUsuario(email, header), HttpStatus.OK);
-	// 	} catch (IllegalArgumentException iae) {
-	// 		return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
-	// 	} catch (ServletException e) {
-	// 		return new ResponseEntity<Usuario>(HttpStatus.FORBIDDEN);
-	// 	}
-	// }
 }

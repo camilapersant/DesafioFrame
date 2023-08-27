@@ -32,7 +32,7 @@ public class ServicoJWT {
 	private String geraToken(String email) {
 		return Jwts.builder().setHeaderParam("typ", "JWT").setSubject(email)
 				.signWith(SignatureAlgorithm.HS512, TOKEN_KEY)
-				.setExpiration(new Date(System.currentTimeMillis() + 3 * 60 * 1000)).compact();// 3 min
+				.setExpiration(new Date(System.currentTimeMillis() + 3 * 60 * 1000)).compact();
 	}
 
 	public String getSujeitoDoToken(String authorizationHeader) {
@@ -40,7 +40,6 @@ public class ServicoJWT {
 			throw new SecurityException("Token inexistente ou mal formatado!");
 		}
 
-		// Extraindo apenas o token do cabecalho.
 		String token = authorizationHeader.substring(FiltroDeJWT.TOKEN_INDEX);
 
 		String subject = null;

@@ -24,7 +24,7 @@ public class UsuarioService {
 	public Usuario getUsuario(String email) {
 		Optional<Usuario> optUsuario = usuariosDAO.findByEmail(email);
 		if (optUsuario.isEmpty())
-			throw new IllegalArgumentException();// usuario nao existe
+			throw new IllegalArgumentException();
 		return optUsuario.get();
 	}
 

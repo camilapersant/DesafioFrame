@@ -1,8 +1,4 @@
 package com.framework.desafio.dtos;
-
-import java.util.Arrays;
-import java.util.List;
-
 import lombok.Data;
 
 @Data
