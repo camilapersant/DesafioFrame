@@ -1,41 +1,41 @@
 package com.framework.desafio.entity;
 
-import java.io.File;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import org.springframework.web.multipart.MultipartFile;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "album", schema="blog")
 public class Album {
-	@Id @GeneratedValue
+	@Id 
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String nome;
+
+	@Column(name = "nome")
+    private String nome;
+
+    @Column(name = "usuario")
     private String usuario;
-    // private File foto;
-    
+
+    @Column(name = "foto")
+    private byte[] foto;
+        
+    public byte[] getFoto() {
+        return foto;
+    }
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
     public String getUsuario() {
         return usuario;
     }
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-    // public File getFoto() {
-    //     return foto;
-    // }
-    // public void setFoto(File foto) {
-    //     this.foto = foto;
-    // }
-    // public MultipartFile getFoto() {
-    //     return foto;
-    // }
-    // public void setFoto(MultipartFile foto) {
-    //     this.foto = foto;
-    // }
+   
     public long getId() {
         return id;
     }
@@ -48,13 +48,5 @@ public class Album {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    // public Usuario getUsuario() {
-    //     return usuario;
-    // }
-    // public void setUsuario(Usuario usuario) {
-    //     this.usuario = usuario;
-    // }
-
-
-	
+    	
 }

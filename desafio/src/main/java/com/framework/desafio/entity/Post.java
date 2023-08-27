@@ -1,14 +1,20 @@
 package com.framework.desafio.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "post", schema="blog")
 public class Post {
-	@Id
-	@GeneratedValue
-	private long id;
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;	
+
+	@Column(name = "texto")
 	private String texto;
 
 	public long getId() {

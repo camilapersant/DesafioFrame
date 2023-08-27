@@ -54,22 +54,20 @@ public class BlogService {
 	}
 
     public Album adicionaAlbum(Album album, String user) throws IOException {
-		//String encodedString = Base64.getEncoder().encodeToString(album.getNome().getBytes());
-		//FileUtils.writeStringToFile(new File("/home/album/"), encodedString, StandardCharsets.UTF_8);
 		File diretorio = new File("C:/home/album/");
         diretorio.mkdirs();
-        File file = new File(diretorio.getAbsolutePath()+File.separator+"PROJETO.FDB");
+        //File file = new File(diretorio.getAbsolutePath());
 		Usuario usuario = new Usuario();
-		usuario.setNome(user);
-		album.setUsuario(usuario.getNome());
-		return album;
+		usuario.setEmail(user);
+		album.setUsuario(usuario.getEmail());
+		return repositoryAlbum.save(album);
 	}
 
-    public String adicionaPhoto(String album, MultipartFile file, String user) {
+    public String adicionaPhoto(String album, MultipartFile file, String user) throws IOException {
 		Album dadosAlbum = getAlbum(album);
 		if (user.equals(dadosAlbum.getUsuario())) {
-			
-			//dadosAlbum.setFoto(file);
+			dadosAlbum.setFoto(file.getBytes());
+			//save bd
 		}
 		return user; 
     }
@@ -84,35 +82,5 @@ public class BlogService {
 	public List<Album> getTodosAlbum() {
 		return repositoryAlbum.findAll();
 	}
-
-    // public Photo adicionaPhoto(MultipartFile file, String user) {
-    //     if(album.getUsuario().equals(user)){
-	// 		return null;
-	// 	}
-    // }
-
-	// public MultiValueMap adicionaPhoto(MultipartFile file, String user) {
-	// 	if(album.getUsuario().equals(user)){
-	// 		return null;
-	// 	}
-	// 	return null;
-	// }
-
-	// 	Optional<PalavraChave> aPalavraChave = repositorioDePalavrasChave.findById(palavraChave);
-	// 	System.out.println("=========> palavraChave recuperada = " + aPalavraChave.get());
-	// 	if (aPalavraChave.isPresent()) {
-	// 		return aPalavraChave.get().getPerguntas();
-	// 	}
-	// 	throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "Palavra-chave nao encontrada: " + palavraChave);
-
-	// }
-
-	// public List<Resposta> getRespostas(long id) {
-	// 	if (repository.findById(id).isEmpty()) {
-	// 		throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
-	// 	}
-
-	// 	return repositorioDeRespostas.findByPergunta(repositoryPost.findById(id).get());
-	// }
 
 }

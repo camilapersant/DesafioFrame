@@ -1,26 +1,31 @@
 package com.framework.desafio.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "comment", schema="blog")
 public class Comment {
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;	
-	private String texto;
 
-	public Comment() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	@Column(name = "texto")
+	private String texto;
 
 	public Comment(Post post, String texto) {
 		super();
 		this.texto = texto;
 	}
 
-	public String getTexto() {
+	public Comment() {
+    }
+
+    public String getTexto() {
 		return texto;
 	}
 
