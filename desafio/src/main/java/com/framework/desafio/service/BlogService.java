@@ -51,31 +51,15 @@ public class BlogService {
 		return repositoryAlbum.save(album);
 	}
 
-	// public String adicionaPhoto(Album album, String user) {
-	// 	Optional<Album> optAlbum = albumDAO.findByNome(album.getNome());
-	// 	if(optAlbum == null) {
-	// 		return "Álbum não encontrado!"; 
-	// 	}
-	// 	else {
-	// 		Album dadosAlbum = optAlbum.get();
-	// 		if (user.equals(dadosAlbum.getUsuario())) {
-	// 			dadosAlbum.setFoto(album.getFoto());
-	// 			repositoryAlbum.save(dadosAlbum);
-	// 			return "Álbum criado com sucesso!";
-	// 		}
-	// 	}
-	// 	return "Usuário não tem permissão para esse álbum!"; 
-	// }
-
-	public String adicionaPhoto(Album album, String user) throws IOException {
-		Optional<Album> optAlbum = albumDAO.findByNome(album.getNome());
+	public String adicionaPhoto(String album, MultipartFile file, String user) throws IOException {
+		Optional<Album> optAlbum = albumDAO.findByNome(album);
 		if(optAlbum == null) {
 			return "Álbum não encontrado!"; 
 		}
 		else {
 			Album dadosAlbum = optAlbum.get();
 			if (user.equals(dadosAlbum.getUsuario())) {
-				dadosAlbum.setFoto(album.getFoto());
+				dadosAlbum.setFoto(file.getBytes());
 				repositoryAlbum.save(dadosAlbum);
 				return "Álbum criado com sucesso!";
 			}

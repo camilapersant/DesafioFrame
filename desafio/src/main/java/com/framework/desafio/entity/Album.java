@@ -21,12 +21,12 @@ public class Album {
     private String usuario;
 
     @Column(name = "foto")
-    private String foto;
+    private byte[] foto;
         
-    public String getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
-    public void setFoto(String foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
     public String getUsuario() {

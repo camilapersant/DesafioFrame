@@ -58,11 +58,12 @@ public class BlogController {
 	}
 	
 	@PostMapping("/photo")
-	 public String singleFileUpload(@RequestBody Album album,
+	 public String singleFileUpload(@RequestParam("album") String album,
+									@RequestParam("file") MultipartFile file,
 								    HttpServletRequest request) throws IOException {
 		String token = request.getHeader("Authorization");
 		String user = servicoJwt.getSujeitoDoToken(token);
-		return blogService.adicionaPhoto(album, user);
+		return blogService.adicionaPhoto(album, file, user);
 	}
 }
 
