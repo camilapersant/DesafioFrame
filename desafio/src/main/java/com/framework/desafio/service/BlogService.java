@@ -30,20 +30,16 @@ public class BlogService {
 	@Autowired
 	private AlbumDAO repositoryAlbum;
 	
-	public Post adicionaPost(String post) {
-		Post novoPost = new Post();
-		novoPost.setTexto(post);
-		return repositoryPost.save(novoPost);
+	public Post adicionaPost(Post post) {
+		return repositoryPost.save(post);
 	}
 
-	public Comment adicionaComentario(String comentario) {
-		Comment novoComentario = new Comment();
-		novoComentario.setTexto(comentario);
-		return repositoryComment.save(novoComentario);
+	public Comment adicionaComentario(Comment comentario) {
+		return repositoryComment.save(comentario);
 	}
 
     public Album adicionaAlbum(Album album, String user) throws IOException {
-		File diretorio = new File("C:/BlogFrame./album/" + album.getNome());
+		File diretorio = new File("C:/BlogFrame./AlbunsBlog./" + album.getNome());
         diretorio.mkdirs();
 		Usuario usuario = new Usuario();
 		usuario.setEmail(user);
@@ -60,8 +56,16 @@ public class BlogService {
 			Album dadosAlbum = optAlbum.get();
 			if (user.equals(dadosAlbum.getUsuario())) {
 				dadosAlbum.setFoto(file.getBytes());
-				repositoryAlbum.save(dadosAlbum);
-				return "Álbum criado com sucesso!";
+				repositoryAlbum.save(dadosAlbum);		
+				String orgName = file.getOriginalFilename();
+				String filePath = "C:/BlogFrame/AlbunsBlog/" + dadosAlbum.getNome()+"/"+orgName;
+				File dest = new File(filePath);
+				try { 
+					file.transferTo(dest); }
+				catch (IllegalStateException e) { 
+					e.printStackTrace();
+				}
+				return "Foto salva com sucesso!";
 			}
 		}
 		return "Usuário não tem permissão para esse álbum!";

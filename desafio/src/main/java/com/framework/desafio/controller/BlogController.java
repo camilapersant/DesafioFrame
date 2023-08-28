@@ -29,13 +29,13 @@ public class BlogController {
 	private ServicoJWT servicoJwt;
 
 	@PostMapping("/post")
-	public ResponseEntity<Post> adicionaPost(@RequestBody String post) {
+	public ResponseEntity<Post> adicionaPost(@RequestBody Post post) {
 		return new ResponseEntity<Post>(blogService.adicionaPost(post),
 				HttpStatus.CREATED);
 	}
 
 	@PostMapping("/comment")
-	public ResponseEntity<Comment> adicionaComentario(@RequestBody String comentario) {
+	public ResponseEntity<Comment> adicionaComentario(@RequestBody Comment comentario) {
 		try {
 			return new ResponseEntity<Comment>(blogService.adicionaComentario(comentario),
 					HttpStatus.CREATED);

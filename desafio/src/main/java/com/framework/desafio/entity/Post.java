@@ -14,6 +14,12 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;	
 
+	@Column(name = "autor")
+	private String autor;
+
+	@Column(name = "data_post")
+	private String dataPost;
+
 	@Column(name = "texto")
 	private String texto;
 
@@ -25,6 +31,22 @@ public class Post {
 		this.id = id;
 	}
 
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
+	public String getDataPost() {
+		return dataPost;
+	}
+
+	public void setDataPost(String dataPost) {
+		this.dataPost = dataPost;
+	}
+
 	public String getTexto() {
 		return texto;
 	}
@@ -33,31 +55,6 @@ public class Post {
 		this.texto = texto;
 	}
 
-	public Post() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Post other = (Post) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
+	
 
 }
