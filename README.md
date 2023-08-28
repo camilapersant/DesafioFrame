@@ -13,3 +13,8 @@ Api blog, onde temos os seguintes endpoints:
 
 > /photo: salva as fotos no banco e permitindo apenas nos álbuns de criados pelo do usuário da sessão.
 
+## Documentação Postman
+https://documenter.getpostman.com/view/15671449/2s9Y5ZtgeU
+
+
+
