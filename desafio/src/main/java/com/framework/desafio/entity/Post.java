@@ -1,5 +1,7 @@
 package com.framework.desafio.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +20,7 @@ public class Post {
 	private String autor;
 
 	@Column(name = "data_post")
-	private String dataPost;
+	private LocalDateTime dataPost;
 
 	@Column(name = "texto")
 	private String texto;
@@ -39,11 +41,11 @@ public class Post {
 		this.autor = autor;
 	}
 
-	public String getDataPost() {
+	public LocalDateTime getDataPost() {
 		return dataPost;
 	}
 
-	public void setDataPost(String dataPost) {
+	public void setDataPost(LocalDateTime dataPost) {
 		this.dataPost = dataPost;
 	}
 
